@@ -6,6 +6,15 @@ export default class Knight extends Piece {
     }
 
     getAvailableMoves(board) {
-        return new Array(0);
+        let allowedSquares = [];
+        let increments = [-2,-1,2,1];
+        for (let i of increments){
+            for(let j of increments){
+                if(Math.abs(i) != Math.abs(j)){
+                    allowedSquares = allowedSquares.concat(this.generateLineMoves(board,i,j,1));
+                }   
+            }
+        }
+        return allowedSquares;
     }
 }
