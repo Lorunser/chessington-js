@@ -16,6 +16,10 @@ export default class Piece {
     }
 
     generateLineMoves(board, rowInc,colInc, limiter=8){
+        if(rowInc==0 && colInc==0){
+            return [];
+        }
+        
         const currentSquare = board.findPiece(this);
         const possMoves = [];
         let newRow = currentSquare.row;

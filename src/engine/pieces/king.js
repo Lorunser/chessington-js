@@ -6,6 +6,13 @@ export default class King extends Piece {
     }
 
     getAvailableMoves(board) {
-        return new Array(0);
+        let allowedSquares = [];
+        let increments = [-1,0,1];
+        for (let i of increments){
+            for(let j of increments){
+                allowedSquares = allowedSquares.concat(this.generateLineMoves(board,i,j,1));
+            }
+        }
+        return allowedSquares;
     }
 }
