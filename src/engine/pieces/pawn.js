@@ -14,21 +14,29 @@ export default class Pawn extends Piece {
         let allowedSquares = [];
         
         //get color
-        let color = -1;
-        if(this.isWhite()){
-            color = 1;
-        }
+        let color = this.isWhite() ? 1: -1;
 
         newRow += color;
         let oneSquare = Square.at(newRow, newCol);
         allowedSquares.push(oneSquare);
 
-        if(initialSquare.row === color || initialSquare.row === color + 7){
+        //check for in initial position
+        if(this.isInInitialPosition(initialSquare)){
             newRow += color;
             let twoSquare = Square.at(newRow, newCol);
             allowedSquares.push(twoSquare);
         }
         
         return allowedSquares;
+    }
+
+    isInInitialPosition(square){
+        if(this.isWhite() && square.row === 1){
+            return true;
+        }
+        if(this.isWhite() === false && square.row === 6){
+            return true
+        }
+        return false;
     }
 }
