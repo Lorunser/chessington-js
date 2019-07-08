@@ -1,3 +1,5 @@
+import King from './pieces/king';
+
 export default class Square {
     constructor(row, col) {
         this.row = row;
@@ -22,7 +24,9 @@ export default class Square {
         }
         else{
             let occupiedPiece = board.getPiece(this);
-
+            if(occupiedPiece instanceof King){
+                return false;
+            }
             //can move into empty or enemy
             if(occupiedPiece === undefined || occupiedPiece.player !== movingPiece.player){
                 return true;

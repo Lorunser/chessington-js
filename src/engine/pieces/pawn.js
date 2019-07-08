@@ -30,6 +30,17 @@ export default class Pawn extends Piece {
                 }
             }
         }
+
+        let sides = [-1,1];
+
+        for(let colInc of sides){
+            const sideMoves = this.generateLineMoves(board,color,colInc,1);
+            for(let move of sideMoves){
+                if(move.isEnemy(this,board)){
+                    allowedSquares.push(move);
+                }   
+            }
+        }
         
         return allowedSquares;
     }
