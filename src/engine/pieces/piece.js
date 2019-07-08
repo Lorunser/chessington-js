@@ -15,27 +15,20 @@ export default class Piece {
         board.movePiece(currentSquare, newSquare);
     }
 
-    generateMoves(board, rowInc,colInc, limiter=8){
+    generateLineMoves(board, rowInc,colInc, limiter=8){
         const currentSquare = board.findPiece(this);
         const possMoves = [];
-        let valid =true;
         let newRow = currentSquare.row;
         let newCol = currentSquare.col;
         let count = 0;
 
-        while(valid && count<limiter){
+        while(count<limiter){
             newRow += rowInc;
             newCol += colInc;
-            count++;
-            let possSquare = Square.at(newRow,newCol);   
-            if(possSquare.isValid()){
-                possMoves.push(possSquare);
-            }
-            else{
-                valid=false;
-            }
+            let possSquare = Square.at(newRow,newCol);
+            count = possSquare.isValid() ? possMoves.push(possSquare) : limiter;
         }
-
+        return possMoves;
     }
 
     isWhite(){

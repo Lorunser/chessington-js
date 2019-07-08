@@ -11,8 +11,7 @@ export default class Bishop extends Piece {
         let increments = [-1,1];
         for (let i of increments){
             for(let j of increments){
-                console.log("here: "+i+" "+j);
-                allowedSquares = allowedSquares.concat(this.generateMoves(board,i,j));
+                allowedSquares = allowedSquares.concat(this.generateLineMoves(board,i,j));
             }
         }
         return allowedSquares;
