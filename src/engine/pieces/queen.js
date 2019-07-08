@@ -6,6 +6,15 @@ export default class Queen extends Piece {
     }
 
     getAvailableMoves(board) {
-        return new Array(0);
+        let allowedSquares = [];
+        let increments = [-1,0,1];
+        for (let i of increments){
+            for(let j of increments){
+                if(!(i===0 && j===0)){
+                    allowedSquares = allowedSquares.concat(this.generateLineMoves(board,i,j));
+                }
+            }
+        }
+        return allowedSquares;
     }
 }
