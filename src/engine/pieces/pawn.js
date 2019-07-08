@@ -18,15 +18,17 @@ export default class Pawn extends Piece {
 
         newRow += color;
         let oneSquare = Square.at(newRow, newCol);
-        allowedSquares.push(oneSquare);
-
-        //check for in initial position
-        if(this.isInInitialPosition(initialSquare)){
-            newRow += color;
-            let twoSquare = Square.at(newRow, newCol);
-            allowedSquares.push(twoSquare);
+        console.log("HERE"+board.getPiece(oneSquare));
+        if (board.getPiece(oneSquare)===undefined){         
+            allowedSquares.push(oneSquare);
+            if(this.isInInitialPosition(initialSquare)){
+                newRow += color;
+                let twoSquare = Square.at(newRow, newCol);
+                if (board.getPiece(twoSquare)===undefined){
+                    allowedSquares.push(twoSquare);
+                }
+            }
         }
-        
         return allowedSquares;
     }
 
