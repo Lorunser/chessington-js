@@ -30,7 +30,7 @@ export default class Piece {
             newRow += rowInc;
             newCol += colInc;
             let possSquare = Square.at(newRow,newCol);
-            count = possSquare.isValid() ? possMoves.push(possSquare) : limiter;
+            count = possSquare.isValid(this, board) ? possMoves.push(possSquare) : limiter;
         }
         return possMoves;
     }
