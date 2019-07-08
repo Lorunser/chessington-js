@@ -1,3 +1,5 @@
+import Player from '../player';
+
 export default class Piece {
     constructor(player) {
         this.player = player;
@@ -10,5 +12,9 @@ export default class Piece {
     moveTo(board, newSquare) {
         const currentSquare = board.findPiece(this);
         board.movePiece(currentSquare, newSquare);
+    }
+
+    isWhite(){
+        return this.player === Player.WHITE;
     }
 }
