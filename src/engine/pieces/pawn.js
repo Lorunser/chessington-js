@@ -8,17 +8,16 @@ export default class Pawn extends Piece {
 
     getAvailableMoves(board) {
         let initialSquare = board.findPiece(this);
-        let newRow, newColumn;
-        newColumn = initialSquare.col;
+        let newRow = initialSquare.row
+        let newColumn = initialSquare.col;
 
         if(this.isWhite()){
-            newRow = initialSquare.row + 1;
+            newRow += 1;
         }
         else{
-            newRow = initialSquare.row - 1;
+            newRow -= 1;
         }
         
-
         return Square.at(newRow, newColumn)
     }
 }
