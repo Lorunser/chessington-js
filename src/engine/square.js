@@ -15,4 +15,13 @@ export default class Square {
     toString() {
         return `Row ${this.row}, Col ${this.col}`;
     }
+
+    isValid(){
+        if(this.row<0||this.col<0||this.row>7||this.col>7){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }

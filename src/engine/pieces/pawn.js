@@ -31,12 +31,6 @@ export default class Pawn extends Piece {
     }
 
     isInInitialPosition(square){
-        if(this.isWhite() && square.row === 1){
-            return true;
-        }
-        if(this.isWhite() === false && square.row === 6){
-            return true
-        }
-        return false;
+        return ((this.isWhite() && square.row === 1)||(!this.isWhite() && square.row === 6));
     }
 }

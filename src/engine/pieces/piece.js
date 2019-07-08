@@ -1,4 +1,5 @@
 import Player from '../player';
+import Square from '../square';
 
 export default class Piece {
     constructor(player) {
@@ -12,6 +13,29 @@ export default class Piece {
     moveTo(board, newSquare) {
         const currentSquare = board.findPiece(this);
         board.movePiece(currentSquare, newSquare);
+    }
+
+    generateMoves(board, rowInc,colInc, limiter=8){
+        const currentSquare = board.findPiece(this);
+        const possMoves = [];
+        let valid =true;
+        let newRow = currentSquare.row;
+        let newCol = currentSquare.col;
+        let count = 0;
+
+        while(valid && count<limiter){
+            newRow += rowInc;
+            newCol += colInc;
+            count++;
+            let possSquare = Square.at(newRow,newCol);   
+            if(possSquare.isValid()){
+                possMoves.push(possSquare);
+            }
+            else{
+                valid=false;
+            }
+        }
+
     }
 
     isWhite(){
