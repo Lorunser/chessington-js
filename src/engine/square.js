@@ -16,12 +16,18 @@ export default class Square {
         return `Row ${this.row}, Col ${this.col}`;
     }
 
-    isValid(){
+    isValid(movingPiece, board){
         if(this.row<0||this.col<0||this.row>7||this.col>7){
             return false;
         }
         else{
-            return true;
+            let occupiedPiece = board.getPiece(this);
+
+            //can move into empty or enemy
+            if(occupiedPiece === undefined || occupiedPiece.player !== movingPiece.player){
+                return true;
+            }
+            return false;
         }
     }
 }
