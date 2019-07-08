@@ -27,7 +27,17 @@ export default class Square {
             if(occupiedPiece === undefined || occupiedPiece.player !== movingPiece.player){
                 return true;
             }
+
             return false;
         }
+    }
+
+    isEnemy(movingPiece, board){
+        let occupiedPiece = board.getPiece(this);
+
+        if(occupiedPiece === undefined || occupiedPiece.player === movingPiece.player){
+            return false;
+        }
+        return true;
     }
 }

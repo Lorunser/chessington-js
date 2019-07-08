@@ -7,19 +7,14 @@ export default class Rook extends Piece {
     }
 
     getAvailableMoves(board) {
-        let initial = board.findPiece(this);
         let allowedSquares = [];
+        let increments = [-1,0,1];
 
-        for(let i = 0; i < 8; i++){
-            let verticalSquare = Square.at(i, initial.col);
-            let horizontalSquare = Square.at(initial.row, i);
-
-            if(!verticalSquare.equals(initial)){
-                allowedSquares.push(verticalSquare);
-            }
-            
-            if(!horizontalSquare.equals(initial)){
-                allowedSquares.push(horizontalSquare);
+        for (let i of increments){
+            for(let j of increments){
+                if(Math.abs(i) !== Math.abs(j)){
+                    allowedSquares = allowedSquares.concat(this.generateLineMoves(board,i,j));
+                }
             }
         }
 
