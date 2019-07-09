@@ -38,12 +38,17 @@ export default class Board {
     }
 
     movePiece(fromSquare, toSquare) {
-        const movingPiece = this.getPiece(fromSquare);        
+        const movingPiece = this.getPiece(fromSquare);
+        //debug
+        let message = String(movingPiece.player) + movingPiece.constructor.name + ": " + fromSquare + " >> " + toSquare;
+        console.log(message);
+        
         if (!!movingPiece && movingPiece.player === this.currentPlayer) {
             this.setPiece(toSquare, movingPiece);
             this.setPiece(fromSquare, undefined);
             this.currentPlayer = (this.currentPlayer === Player.WHITE ? Player.BLACK : Player.WHITE);
         }
+
         //pawn promotion
         const endPosition = movingPiece.isWhite() ? 7:0;
         if(toSquare.row === endPosition && movingPiece instanceof Pawn){
