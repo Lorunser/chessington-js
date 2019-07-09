@@ -1,6 +1,8 @@
 import Player from './player';
 import GameSettings from './gameSettings';
 import Square from './square';
+import Pawn from './pieces/pawn';
+import Queen from './pieces/queen';
 
 export default class Board {
     constructor(currentPlayer) {
@@ -41,6 +43,12 @@ export default class Board {
             this.setPiece(toSquare, movingPiece);
             this.setPiece(fromSquare, undefined);
             this.currentPlayer = (this.currentPlayer === Player.WHITE ? Player.BLACK : Player.WHITE);
+        }
+        //pawn promotion
+        const endPosition = movingPiece.isWhite() ? 7:0;
+        if(toSquare.row === endPosition && movingPiece instanceof Pawn){
+            const newQueen = new Queen(this.currentPlayer);
+            this.setPiece(toSquare,newQueen);
         }
     }
 }

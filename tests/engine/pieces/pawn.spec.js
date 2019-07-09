@@ -192,15 +192,16 @@ describe('Pawn', () => {
         let pawn = new Pawn(Player.WHITE);
         board.setPiece(Square.at(5,0), pawn);
 
-        pawn.moveTo(board, Square.at(6,0));
-        let piece = board.getPiece(6,0);
 
-        should.deepEqual(piece instanceof Pawn, true);
+        pawn.moveTo(board, Square.at(6,0));
+        let piece = board.getPiece(Square.at(6,0));
+
+        (piece instanceof Pawn).should.deep.equal(true);///here
 
         piece.moveTo(board, Square.at(7,0));
-        piece = board.getPiece(7,0);
+        piece = board.getPiece(Square.at(7,0));
 
-        should.deepEqual(piece instanceof Queen, true);
+        (piece instanceof Queen).should.deep.equal(true);
     });
 
 });

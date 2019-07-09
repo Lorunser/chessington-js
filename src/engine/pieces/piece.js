@@ -13,6 +13,7 @@ export default class Piece {
     moveTo(board, newSquare) {
         const currentSquare = board.findPiece(this);
         board.movePiece(currentSquare, newSquare);
+
     }
 
     generateLineMoves(board, rowInc,colInc, limiter=8){
