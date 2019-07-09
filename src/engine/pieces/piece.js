@@ -4,6 +4,7 @@ import Square from '../square';
 export default class Piece {
     constructor(player) {
         this.player = player;
+        this.movesMade = 0;
     }
 
     getAvailableMoves(board) {
@@ -13,7 +14,7 @@ export default class Piece {
     moveTo(board, newSquare) {
         const currentSquare = board.findPiece(this);
         board.movePiece(currentSquare, newSquare);
-
+        this.movesMade++;
     }
 
     generateLineMoves(board, rowInc,colInc, limiter=8){
