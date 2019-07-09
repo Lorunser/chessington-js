@@ -95,12 +95,14 @@ describe('King', () => {
         board.setPiece(Square.at(7,4), king);
         board.setPiece(Square.at(7,7), rook);
 
+        let moves = king.getAvailableMoves(board);
+        moves.should.have.length(6); //5 normal + 1 castle
+
         const obstructingPiece = new Pawn(Player.BLACK);
         board.setPiece(Square.at(7,6), obstructingPiece);
 
-        const moves = king.getAvailableMoves(board);
-
-        moves.should.have.length(6);
+        moves = king.getAvailableMoves(board);
+        moves.should.have.length(5); //5 normal
     });
 
     it('castling moves the rook as well', () =>{
