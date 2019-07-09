@@ -5,6 +5,7 @@ import King from '../../../src/engine/pieces/king';
 import Board from '../../../src/engine/board';
 import Player from '../../../src/engine/player';
 import Square from '../../../src/engine/square';
+import Queen from '../../../src/engine/pieces/queen';
 
 describe('Pawn', () => {
 
@@ -185,6 +186,21 @@ describe('Pawn', () => {
         const moves = pawn.getAvailableMoves(board);
 
         moves.should.not.deep.include(Square.at(4, 3));
+    });
+
+    it('white pawn promoted if in row 7 NOT in row 6', () => {
+        let pawn = new Pawn(Player.WHITE);
+        board.setPiece(Square.at(5,0), pawn);
+
+        pawn.moveTo(board, Square.at(6,0));
+        let piece = board.getPiece(6,0);
+
+        should.deepEqual(piece instanceof Pawn, true);
+
+        piece.moveTo(board, Square.at(7,0));
+        piece = board.getPiece(7,0);
+
+        should.deepEqual(piece instanceof Queen, true);
     });
 
 });
