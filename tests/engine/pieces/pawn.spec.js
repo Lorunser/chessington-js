@@ -86,6 +86,22 @@ describe('Pawn', () => {
             moves.should.not.deep.include(Square.at(5, 3));
         });
 
+        it('promoted if in row 7 NOT in row 6', () => {
+            let pawn = new Pawn(Player.WHITE);
+            board.setPiece(Square.at(5,0), pawn);
+
+
+            pawn.moveTo(board, Square.at(6,0));
+            let piece = board.getPiece(Square.at(6,0));
+
+            (piece instanceof Pawn).should.deep.equal(true);
+
+            piece.moveTo(board, Square.at(7,0));
+            piece = board.getPiece(Square.at(7,0));
+
+            (piece instanceof Queen).should.deep.equal(true);
+        });
+
     });
 
     describe('black pawns', () => {
@@ -164,6 +180,23 @@ describe('Pawn', () => {
 
             moves.should.not.deep.include(Square.at(3, 3));
         });
+
+        it('promoted if in row 0 NOT in row 1', () => {
+            let pawn = new Pawn(Player.BLACK);
+            board.setPiece(Square.at(2,0), pawn);
+
+
+            pawn.moveTo(board, Square.at(1,0));
+            let piece = board.getPiece(Square.at(1,0));
+
+            (piece instanceof Pawn).should.deep.equal(true);
+
+            piece.moveTo(board, Square.at(0,0));
+            piece = board.getPiece(Square.at(0,0));
+
+            (piece instanceof Queen).should.deep.equal(true);
+        });
+
     });
 
     it('cannot move if there is a piece in front', () => {
@@ -188,20 +221,6 @@ describe('Pawn', () => {
         moves.should.not.deep.include(Square.at(4, 3));
     });
 
-    it('white pawn promoted if in row 7 NOT in row 6', () => {
-        let pawn = new Pawn(Player.WHITE);
-        board.setPiece(Square.at(5,0), pawn);
-
-
-        pawn.moveTo(board, Square.at(6,0));
-        let piece = board.getPiece(Square.at(6,0));
-
-        (piece instanceof Pawn).should.deep.equal(true);///here
-
-        piece.moveTo(board, Square.at(7,0));
-        piece = board.getPiece(Square.at(7,0));
-
-        (piece instanceof Queen).should.deep.equal(true);
-    });
+    
 
 });
